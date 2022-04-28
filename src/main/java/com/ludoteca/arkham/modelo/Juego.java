@@ -8,9 +8,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+import org.springframework.beans.factory.annotation.Value;
+
 @Entity
 //Table sirve para indicar el nombre de la tabla en la BD
 @Table(name = "juegos")
+@SQLDelete(sql = "UPDATE juegos SET eliminado = si WHERE id=?")
+@Where(clause = "eliminado=no")
 public class Juego {
 	// CREACION DE ATRIBUTOS DE LA CLASE
 
@@ -28,6 +34,9 @@ public class Juego {
 	
 	@Column(name="edicion",length = 50,nullable = false)
 	private String edicion;
+	
+	@Column(name = "eliminado",length=15, nullable = false)
+	private String eliminado = "no";
 
 	// CREACION DE CONSTRUCTORES (VACIO Y CON SUS ATRIBUTOS)
 	public Juego() {
@@ -39,6 +48,17 @@ public class Juego {
 		this.id = id;
 		this.nombre = nombre;
 		this.precio = precio;
+	}
+	
+	
+
+	public Juego(int id, String nombre, int precio, String edicion, String eliminado) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.precio = precio;
+		this.edicion = edicion;
+		this.eliminado = eliminado;
 	}
 
 	// GETTERS Y SETTERS
@@ -73,6 +93,13 @@ public class Juego {
 	public void setEdicion(String edicion) {
 		this.edicion = edicion;
 	}
-	
+
+	public String getEliminado() {
+		return eliminado;
+	}
+
+	public void setEliminado(String eliminado) {
+		this.eliminado = eliminado;
+	}
 
 }
