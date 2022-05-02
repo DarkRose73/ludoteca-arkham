@@ -29,6 +29,10 @@ public class Juego {
 	
 	@Column(name="edicion",length = 50,nullable = false)
 	private String edicion;
+	
+	//Joan Salas 02/05
+	@Column(name="id_usuario", nullable = false)
+	private int idUsuario;
 
 	// CREACION DE CONSTRUCTORES (VACIO Y CON SUS ATRIBUTOS)
 	public Juego() {
