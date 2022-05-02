@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ludoteca.arkham.excepciones.ExcepcionRecursoNoEncontrado;
 import com.ludoteca.arkham.modelo.Juego;
 import com.ludoteca.arkham.repositorio.JuegoRepositorio;
+import com.ludoteca.arkham.servicios.JuegoService;
 
+//RestController nos define un controlador de tipo REST
 @RestController
 //Para entrar a todas las rutas que hayan más abajo, estas deben tener antes la ruta especificada
 @RequestMapping("/api/v1/")
@@ -50,7 +53,7 @@ public class JuegoControlador {
 		return ResponseEntity.ok(juego);
 	}
 	
-	
+	//Actualización de un juego
 	@PutMapping("/juegos/{id}")
 	public ResponseEntity<Juego> actualizarJuego(@PathVariable Integer id, @RequestBody Juego detalleJuego){
 		//Buscar el juego por ID
@@ -65,6 +68,14 @@ public class JuegoControlador {
 		Juego juegoActualizado = repo.save(juego);
 		return ResponseEntity.ok(juegoActualizado);
 	}
+
+
+	//Eliminación de un juego
+	@DeleteMapping("/juegos/{id}")
+	public void eliminarJuego(@PathVariable Integer id){
+		repo.deleteById(id);
+	}
+
 }
 
 

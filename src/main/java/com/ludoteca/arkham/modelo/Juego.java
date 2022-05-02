@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+//Estereotipos -> @Entity @Autowired @Table, etc
 @Entity
 //Table sirve para indicar el nombre de la tabla en la BD
 @Table(name = "juegos")
