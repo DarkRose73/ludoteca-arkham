@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ludoteca.arkham.excepciones.ExcepcionRecursoNoEncontrado;
 import com.ludoteca.arkham.modelo.Juego;
 import com.ludoteca.arkham.repositorio.JuegoRepositorio;
-import com.ludoteca.arkham.servicios.JuegoService;
 
 //RestController nos define un controlador de tipo REST
 @RestController
