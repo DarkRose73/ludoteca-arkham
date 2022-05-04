@@ -46,7 +46,7 @@ public class ExpansionControlador {
 	}
 
 	//Actualizar expansion por ID
-	@PutMapping("/expansion/{id}")
+	@PutMapping("/expansiones/{id}")
 	public ResponseEntity<Expansion> actualizarExpansion(@PathVariable Integer id, @RequestBody Expansion detalleExpansion) {
 		Expansion expansion = repo.findById(id)
 				.orElseThrow(() -> new ExcepcionRecursoNoEncontrado("No existe la expansion con el ID: " + id));
@@ -56,7 +56,7 @@ public class ExpansionControlador {
 		return ResponseEntity.ok(expansionActualizada);
 	}
 
-	@DeleteMapping("/expansion/{id}")
+	@DeleteMapping("/expansiones/{id}")
 	public void eliminarExpansion(@PathVariable Integer id) {
 		repo.deleteById(id);
 	}
