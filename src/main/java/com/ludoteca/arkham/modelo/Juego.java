@@ -29,7 +29,7 @@ public class Juego {
 	
 	@Column(name="edicion",length = 50,nullable = false)
 	private String edicion;
-
+	
 	// CREACION DE CONSTRUCTORES (VACIO Y CON SUS ATRIBUTOS)
 	public Juego() {
 

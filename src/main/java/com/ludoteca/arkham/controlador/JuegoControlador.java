@@ -1,6 +1,8 @@
 //CLASE CREADA POR JOAN SALAS 27/04
 package com.ludoteca.arkham.controlador;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ludoteca.arkham.excepciones.ExcepcionRecursoNoEncontrado;
+import com.ludoteca.arkham.modelo.Expansion;
 import com.ludoteca.arkham.modelo.Juego;
+import com.ludoteca.arkham.repositorio.ExpansionRepositorio;
 import com.ludoteca.arkham.repositorio.JuegoRepositorio;
 
 //RestController nos define un controlador de tipo REST
@@ -29,11 +33,34 @@ public class JuegoControlador {
 
 	@Autowired
 	private JuegoRepositorio repo;
+	
+	@Autowired
+	private ExpansionRepositorio expansionRepo;
 
 	// Metodo para recuperar todos los juegos de la BD (retorna en formato JSON)
 	@GetMapping("/juegos")
 	public List<Juego> listarJuegos() {
 		return repo.findAll();
+	}
+	
+	//Metodo para recuperar las expansiones de un juego
+	// 04/05
+	@GetMapping("/expansionesjuego/{id}")
+	public List<Expansion> listarExpansiones(@PathVariable Integer id){
+		//Validar que exista el juego consultado
+		Juego juego = repo.findById(id).orElseThrow(() -> new ExcepcionRecursoNoEncontrado("No existe el Juego con el ID: "+id));
+		//Creacion de las listas de expansiones (una con todas las expansiones y una con filtro del id del juego)
+		List<Expansion> listaSinFiltrar = expansionRepo.findAll();
+		List<Expansion> listaFiltrada = expansionRepo.findAll();
+		listaFiltrada.clear();
+		//Se realiza el filtro
+		for(int i = 0; i < listaSinFiltrar.size();i++) {
+			Expansion exp = listaSinFiltrar.get(i);
+			if(exp.getIdJuego()==id) {
+				listaFiltrada.add(exp);
+			}
+		}
+		return listaFiltrada;
 	}
 	
 	//Joan Salas 28/04

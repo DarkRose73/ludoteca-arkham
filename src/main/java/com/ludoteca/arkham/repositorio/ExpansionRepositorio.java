@@ -7,5 +7,4 @@ import com.ludoteca.arkham.modelo.Expansion;
 
 @Repository
 public interface ExpansionRepositorio extends JpaRepository<Expansion, Integer>{
-
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ludoteca.arkham.excepciones.ExcepcionRecursoNoEncontrado;
 import com.ludoteca.arkham.modelo.Expansion;
 import com.ludoteca.arkham.repositorio.ExpansionRepositorio;
+import com.ludoteca.arkham.repositorio.JuegoRepositorio;
 
 @RestController
 @RequestMapping("/api/v1/")

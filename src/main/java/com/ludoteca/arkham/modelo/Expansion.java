@@ -14,6 +14,8 @@ public class Expansion {
 	private String nombre;
 	@Column(name = "precio", nullable = false)
 	private int precio;
+	@Column(name="id_juego")
+	private int idJuego;
 
 	public int getId() {
 		return id;
@@ -37,6 +39,15 @@ public class Expansion {
 
 	public void setPrecio(int precio) {
 		this.precio = precio;
+	}
+	
+
+	public int getIdJuego() {
+		return idJuego;
+	}
+
+	public void setIdJuego(int idJuego) {
+		this.idJuego = idJuego;
 	}
 
 	public Expansion(int id, String nombre, int precio) {
