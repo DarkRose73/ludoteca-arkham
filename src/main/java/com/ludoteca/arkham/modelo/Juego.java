@@ -26,13 +26,24 @@ public class Juego {
 
 	@Column(name = "precio", nullable = false)
 	private int precio;
-	
-	@Column(name="edicion",length = 50,nullable = false)
+
+	@Column(name = "edicion", length = 50, nullable = false)
 	private String edicion;
-	
+
+	@Column(name = "id_usuario")
+	private int idUsuario;
+
 	// CREACION DE CONSTRUCTORES (VACIO Y CON SUS ATRIBUTOS)
 	public Juego() {
 
+	}
+
+	public int getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
 	public Juego(int id, String nombre, int precio) {
@@ -74,6 +85,5 @@ public class Juego {
 	public void setEdicion(String edicion) {
 		this.edicion = edicion;
 	}
-	
 
 }
