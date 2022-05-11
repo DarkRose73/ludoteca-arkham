@@ -12,5 +12,4 @@ import com.ludoteca.arkham.modelo.Juego;
 //JpaRepository nos permite conectar con la BD para realizar transacciones
 public interface JuegoRepositorio extends JpaRepository<Juego, Integer>{
 
-	
 }

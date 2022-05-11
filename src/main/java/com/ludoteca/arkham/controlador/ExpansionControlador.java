@@ -9,18 +9,18 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.ludoteca.arkham.excepciones.ExcepcionRecursoNoEncontrado;
 import com.ludoteca.arkham.modelo.Expansion;
 import com.ludoteca.arkham.repositorio.ExpansionRepositorio;
-import com.ludoteca.arkham.repositorio.JuegoRepositorio;
 
 @RestController
 @RequestMapping("/api/v1/")
 @CrossOrigin(origins = "http://localhost:4200")
+
+//Autor: Joan Salas 03/05
 public class ExpansionControlador {
 
 	@Autowired
@@ -43,17 +43,6 @@ public class ExpansionControlador {
 		Expansion expansion = repo.findById(id)
 				.orElseThrow(() -> new ExcepcionRecursoNoEncontrado("No existe la expansion con el ID: " + id));
 		return ResponseEntity.ok(expansion);
-	}
-
-	//Actualizar expansion por ID
-	@PutMapping("/expansiones/{id}")
-	public ResponseEntity<Expansion> actualizarExpansion(@PathVariable Integer id, @RequestBody Expansion detalleExpansion) {
-		Expansion expansion = repo.findById(id)
-				.orElseThrow(() -> new ExcepcionRecursoNoEncontrado("No existe la expansion con el ID: " + id));
-		expansion.setNombre(detalleExpansion.getNombre());
-		expansion.setPrecio(detalleExpansion.getPrecio());
-		Expansion expansionActualizada = repo.save(expansion);
-		return ResponseEntity.ok(expansionActualizada);
 	}
 
 	@DeleteMapping("/expansiones/{id}")
